@@ -39,44 +39,39 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     // qDebug : output stream for debugging information
-    // Nb of ports available
-    qDebug() << "Number of serial ports:" << QSerialPortInfo::availablePorts().count();
-    char data[10000] = "";
-    QByteArray input;
     // For each port, print information
     foreach (const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()) {
 
         QSerialPort *port = new QSerialPort(serialPortInfo);
-        if (port->open(QIODevice::ReadWrite)) {
+        if (port->open(QIODevice::ReadWrite) && port->portName()=="COM9") {
+
             qDebug() << "Name :" << port->portName();
-            qDebug() << "Baud rate:" << port->baudRate();
+            /*qDebug() << "Baud rate:" << port->baudRate();
             qDebug() << "Data bits:" << port->dataBits();
             qDebug() << "Stop bits:" << port->stopBits();
             qDebug() << "Parity:" << port->parity();
             qDebug() << "Flow control:" << port->flowControl();
-            qDebug() << "Read buffer size:" << port->readBufferSize();
+            qDebug() << "Read buffer size:" << port->readBufferSize();*/
             if(port->isOpen() && port->isWritable()){
-                const char output[10] = "AT+CGMI\r\n";
+                const char output[10] = "AT+WGVP\r\n";
                 port->write(output);
                 port->flush();
-                port->waitForReadyRead(200);
-                input = port->readAll();
+                QByteArray input = port->readAll();
+                while (port->waitForReadyRead(2000)) {
+                   input.append(port->readAll());
+                }
                 qDebug() << input;
             }
-            /*if(port->waitForReadyRead(5000)){
-                port->readLine(data,10000);
-            } else {
-                qDebug() << "The connection has been closed or an error has occurred";
-            }*/
             port->close();
-        } else {
+
+        }
+        /*else {
             // If problem
             qDebug() << "Unable to open port, error code" << port->error();
-        }
+        }*/
 
 
         delete port;
-        qDebug() << data << endl;
     }
 
 
