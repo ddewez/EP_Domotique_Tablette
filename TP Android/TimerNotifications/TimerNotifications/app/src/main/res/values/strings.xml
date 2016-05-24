@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Timer Notifications</string>
+    <string name="instruction">Click on the button to launch a timer in the notification bar</string>
+    <string name="action">Kill Time</string>
+    <string name="notif_title">Timer launched</string>
+    <string name="howmuch">How much time ?</string>
+</resources>

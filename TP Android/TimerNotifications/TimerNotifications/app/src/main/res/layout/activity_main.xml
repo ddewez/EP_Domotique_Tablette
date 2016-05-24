@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="trebon.landry.timernotifications.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instruction"
+        android:background="#3140a0"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:padding="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action"
+        android:id="@+id/action_btn"
+        android:textSize="30sp"
+        android:background="#4153b5"
+        android:textColor="#ffffff"
+        android:padding="10dp"
+        android:layout_marginBottom="171dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/time_number"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/action_btn"
+        android:layout_alignStart="@+id/action_btn"
+        android:layout_alignRight="@+id/action_btn"
+        android:layout_alignEnd="@+id/action_btn"
+        android:textAlignment="center"
+        android:hint="@string/howmuch"
+        style="@style/AppTheme"
+        android:textSize="18sp" />
+
+</RelativeLayout>
